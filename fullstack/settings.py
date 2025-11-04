@@ -35,7 +35,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-!#19asf!7v@8mq@f$1i^y(19u(ck#&p)^_1ip-dv+x#6om=8cs'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False  
 
 ALLOWED_HOSTS = ['9pd.pythonanywhere.com']
 
@@ -91,14 +90,16 @@ WSGI_APPLICATION = 'fullstack.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': '9pd$default',       # اسم قاعدة البيانات
-        'USER': '9pd',               # اسم المستخدم
-        'PASSWORD': 'Kh@ledz008',    # كلمة السر الخاصة بقاعدة البيانات
-        'HOST': '9pd.mysql.pythonanywhere-services.com', # مهم جدًا
-        'PORT': '3306',              # عادة 3306 لـ MySQL
+        'NAME': 'your_database_name',
+        'USER': 'your_username',
+        'PASSWORD': 'your_password',
+        'HOST': 'localhost',
+        'PORT': '3306',
+        'OPTIONS': {
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
+        }
     }
 }
-
 
 
 
@@ -156,3 +157,11 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+if 'PYTHONANYWHERE_DOMAIN' in os.environ:
+    DEBUG = False
+    ALLOWED_HOSTS = ['9pd.pythonanywhere.com']
+else:
+    DEBUG = True
+    ALLOWED_HOSTS = []
