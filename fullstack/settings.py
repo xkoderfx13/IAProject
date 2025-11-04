@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 from pathlib import Path
 from dotenv import load_dotenv
 import os
+import dj_database_url 
+
 
 # تحميل المتغيرات من ملف .env
 load_dotenv()
@@ -33,9 +35,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-!#19asf!7v@8mq@f$1i^y(19u(ck#&p)^_1ip-dv+x#6om=8cs'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True  
+DEBUG = False  
 
-ALLOWED_HOSTS = [os.environ.get('RAILWAY_STATIC_URL', 'localhost'), '127.0.0.1']
+ALLOWED_HOSTS = ['9pd.pythonanywhere.com']
 
 # Application definition
 
@@ -89,16 +91,16 @@ WSGI_APPLICATION = 'fullstack.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'iaproject',
-        'USER': 'root',
-        'HOST': 'localhost',
-        'PASSWORD':'Kh@ledz008',
-        'PORT': '3306',
-        'OPTIONS': {
-            'charset': 'utf8mb4',
-        }
+        'NAME': '9pd$default',       # اسم قاعدة البيانات
+        'USER': '9pd',               # اسم المستخدم
+        'PASSWORD': 'Kh@ledz008',    # كلمة السر الخاصة بقاعدة البيانات
+        'HOST': '9pd.mysql.pythonanywhere-services.com', # مهم جدًا
+        'PORT': '3306',              # عادة 3306 لـ MySQL
     }
 }
+
+
+
 
 
 
