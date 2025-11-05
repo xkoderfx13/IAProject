@@ -12,8 +12,29 @@ import requests
 import json
 from django.contrib.auth.hashers import make_password
 import os
+import dotenv
 
-DISCORD_TOKEN = os.getenv('DISCORD_TOKEN')
+dotenv.load_dotenv()
+
+BOT_TOKEN = os.getenv("DISCORD_BOT_TOKEN")
+SERVER_ID = os.getenv("DISCORD_SERVER_ID")
+WEBHOOK_URL = os.getenv("DISCORD_WEBHOOK_URL")
+
+
+
+import os, requests, dotenv
+
+dotenv.load_dotenv()
+
+BOT_TOKEN = os.getenv("DISCORD_BOT_TOKEN")
+SERVER_ID = os.getenv("DISCORD_SERVER_ID")
+
+headers = {"Authorization": f"Bot {BOT_TOKEN}"}
+
+r = requests.get(f"https://discord.com/api/v10/guilds/{SERVER_ID}", headers=headers)
+print("Status:", r.status_code)
+print(r.text)
+
 
 
 @login_required(login_url='ialogin')
